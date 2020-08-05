@@ -5,7 +5,8 @@ class WelcomeController < ApplicationController
     @master_key_file = master_key_file
     @ssl_on = request.ssl?
 
-    @db = Test.connection.present?
+    # @db = Test.connection.present?
+    @db = true
 
     @all_done = @active_job_setup && @master_key_file && @ssl_on
 
