@@ -6,7 +6,10 @@ class WelcomeController < ApplicationController
     @ssl_on = request.ssl?
 
     # @db = Test.connection.present?
-    @db = true
+    ActiveRecord::Base.establish_connection # Establishes connection
+    ActiveRecord::Base.connection # Calls connection object
+
+    @db = ActiveRecord::Base.connected? 
 
     @all_done = @active_job_setup && @master_key_file && @ssl_on
 
