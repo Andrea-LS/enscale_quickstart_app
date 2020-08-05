@@ -5,12 +5,7 @@ class WelcomeController < ApplicationController
     @master_key_file = master_key_file
     @ssl_on = request.ssl?
 
-    begin
-      Test.find_or_create_by(hello: 'world')
-      @db = Test.connection.present?
-    rescue
-      @db = false
-    end
+    @db = Test.connection.present?
 
     @all_done = @active_job_setup && @master_key_file && @ssl_on
 
