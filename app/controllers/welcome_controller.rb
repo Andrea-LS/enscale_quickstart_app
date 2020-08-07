@@ -1,11 +1,9 @@
 class WelcomeController < ApplicationController
   def index
-    @active_job_setup = ExampleJob.perform_now
+    @redis_connection = false
     @master_key_env = ENV['RAILS_MASTER_KEY'].present?
     @master_key_file = master_key_file
     @ssl_on = request.ssl?
-
-    # @db = Test.connection.present?
 
     @db = false
 
@@ -24,7 +22,7 @@ class WelcomeController < ApplicationController
       format.html
       format.json {
         render json: {
-          active_job_setup: @active_job_setup,
+          redis_connection: @redis_connection,
           master_key_env: @master_key_env,
           master_key_file: @master_key_file,
           ssl_on: @ssl_on
