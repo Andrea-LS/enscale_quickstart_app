@@ -1,6 +1,13 @@
 class WelcomeController < ApplicationController
   def index
-    @redis_connection = false
+    redis = Redis.new(url: ENV['REDIS_URL'])
+
+    begin
+      @redis_connection = redis.ping == 'PONG'
+    rescue => exception
+      @redis_connection = false
+    end
+
     @master_key_env = ENV['RAILS_MASTER_KEY'].present?
     @master_key_file = master_key_file
     @ssl_on = request.ssl?
