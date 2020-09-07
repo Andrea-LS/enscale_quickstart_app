@@ -138,14 +138,14 @@
           3. Create the Master Key file
         </div>
         <div class="px-6 pb-6">
-          Run <text class="text-gray-700 font-mono">rails secret</text> in webroot.
+          Run <text class="text-gray-700 font-mono">rails secret > config/master.key</text> in webroot.
         </div>
       </div>
     </div>
   <% end %>
 
 
-  <% if @master_key_file %>
+  <% if @db %>
     <div class="max-w-screen-xl mx-auto px-2 sm:px-4 lg:px-6 py-6">
       <div class="border-4 border-green-500 bg-white overflow-hidden shadow rounded-lg">
         <div class="border-b border-gray-200 px-4 py-5 sm:px-6 grid md:grid-cols-12">
