@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
 
     @db = ActiveRecord::Base.connected?
 
-    @all_done = @active_job_setup && @master_key_file && @ssl_on
+    @all_done = @redis_connection && @db && @master_key_file && @ssl_on
 
     respond_to do |format|
       format.html
