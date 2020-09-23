@@ -41,7 +41,7 @@ class WelcomeController < ApplicationController
   private
 
   def master_key_file
-    path = File.join(Rails.root, "config", "master.key")
+    path = File.join(Rails.root, "config", "master.key.example")
     return File.file?(path)
   end
 end
