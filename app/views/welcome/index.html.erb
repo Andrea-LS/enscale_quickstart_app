@@ -7,7 +7,10 @@
         Welcome to Enscale
       </h2>
       <p class="font-sans mt-3 text-lg leading-7 text-purple-100">
-      learning, we will also reward upon completion with bonus funds. This way you can enjoy an extended trial and learn even more before upgrading your account.
+      The purpose of this application is to familiarize yourself with Enscale's most important features. While learning should be done for the sake of learning, we will also reward upon completion with bonus funds. This way you can enjoy an extended trial and learn even more before upgrading your account.
+        <p class="font-sans mt-3 text-lg leading-7 text-purple-100">
+          For more detailed steps and screenshots you can check out the <a href="https://www.enscale.com/docs/10/account-and-billing/trial-account/quickstart-app" target=_blank class="text-blue-600">Quickstart app article</a> in our documentation.
+      </p>
       </p>
     </div>
   </div>
@@ -59,13 +62,16 @@
           1. Add the node to your environment
         </div>
         <div class="px-6">
-          <p>Detailed steps for adding an extra node can be found in this <a href="https://www.enscale.com/docs/10/features/horizontal-scaling#adding-new-nodes" class="text-blue-600">article</a>. </p>
+          <p>Enter your environment and click <b>Add new node</b>. Redis can be found in the NoSQL database category.</p>
         </div>
         <div class="px-6 py-5 mt-1 text-lg leading-5 text-gray-800 font-semibold">
-          2. Create the environment variable
+          2. Add an environment variable
         </div>
         <div class="px-6 pb-6">
-          Once the Redis node is added, you should add its URL to the runtime node's environment variables. See <a href="https://www.enscale.com/docs/10/features/environment-variables#adding-variables"  class="text-blue-600"> here </a> how.
+          <p class="pb-4">From the application node's <b>Configure tab</b> open <b>Variables</b> and add the following variable:</b>
+          <p class="px-8">Name: REDIS_URL </p>
+          <p class="px-8">Value: redis://:[redis_password]@[accessURL] </p>
+        <p class="pt-4"><i> *The password and access URL are sent to you via email after the Redis node is created.</i></p>
         </div>
       </div>
     </div>
@@ -95,9 +101,10 @@
           Use our shared SSL certificate to ensure there is a secure HTTPS connection to your environment
         </div>
         <div class="px-6 pb-6">
-          <p>Shared SSL can be enabled easily following the steps described <a href="https://www.enscale.com/docs/10/features/ssl-certificates#enscale-shared-ssl" class="text-blue-600">in our documentation</a> and is pefect for development projects which don't need public IP access. </p>
+          <p>Shared SSL is perfect for development projects which don't need public IP access. Enable it from the <b>Actions</b> dropdown > <b>Manage SSL</b> > <b>Enable Shared SSL</b>.</p>
           <br>
           <p>For production use you will have a choice of using your own SSL certificate, or use our Let's Encrypt integration to issue and automatically renew SSL certificates for the environment name or any custom domain you've pointed to your environment.</p>
+          
         </div>
 
       </div>
@@ -128,19 +135,19 @@
           1. Set up SSH
         </div>
         <div class="px-6">
-          <p><a href="https://www.enscale.com/docs/10/access/add-ssh-key" class="text-blue-600">Add a public SSH key</a>  to the Enscale dashboard so you can connect via SSH to your account environments, or your node directly.</p>
+          <p>Open the <b>Manage SSH keys</b> modal either from your node's Connect tab or from the main account dropdown and add a <b>public SSH key</b> to the Enscale dashboard so you can connect via SSH to your account environments, or your node directly.</p>
         </div>
         <div class="px-6 py-5 mt-1 text-lg leading-5 text-gray-800 font-semibold">
           2. Connect to your application node
         </div>
         <div class="px-6">
-          Establish an SSH connection to your node using your<a href="https://www.enscale.com/docs/10/access/connect-with-ssh#connect-to-a-specific-node-directly"  class="text-blue-600"> node's connection details</a>.
+          Establish an SSH connection to your node using your node's connection details found in the <b>Connect</b> tab</a>.
         </div>
         <div class="px-6 py-5 mt-1 text-lg leading-5 text-gray-800 font-semibold">
           3. Create the Master Key file
         </div>
         <div class="px-6 pb-6">
-          Run <text class="text-gray-700 font-mono">rails secret > config/master.key.example</text> in webroot.
+          Run <text class="text-gray-700 font-mono">rails secret > config/master.key.example</text> in /var/www/webroot/ROOT.
         </div>
       </div>
     </div>
@@ -170,12 +177,12 @@
           1. Open the database.yml file
         </div>
         <div class="px-6">
-          <p>Access the <a href="https://www.enscale.com/docs/10/features/file-manager" class="text-blue-600">File Manager</a>  in Enscale, then from the ROOT/config folder click on database.yml.</p>
+          <p>Access the <a href="https://www.enscale.com/docs/10/features/file-manager" class="text-blue-600">File Manager</a> from your application node in Enscale, then from the ROOT/config folder click on database.yml.</p>
         </div>
         <div class="px-6 py-5 mt-1 text-lg leading-5 text-gray-800 font-semibold">
           2. Edit the database.yml file and save your changes
         </div>
-        <div class="px-6 pb-6"> You will need to add the below lines:
+        <div class="px-6 pb-6"> Replace the file content with the below lines:
 <pre class="bg-gray-400">
 default: &default
   adapter: sqlite3
@@ -185,6 +192,13 @@ production:
   <<: *default
   database: yourdbnamehere.db
 </pre>
+        </div>
+        <div class="px-6 py-5 mt-1 text-lg leading-5 text-gray-800 font-semibold">
+          3. Restart the application node
+        </div>
+           <div class="px-6 pb-6">
+             Click the <b>restart</b> icon on your application node so the configuration changes take effect.
+     
         </div>
       </div>
     </div>
